@@ -9,94 +9,9 @@ public class Example implements ExampleConstants {
     parser.Input();
   }
 
-  static final public void Input() throws ParseException, NumberFormatException {double res;
-    label_1:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case REALNUMBER:{
-        ;
-        break;
-        }
-      default:
-        jj_la1[0] = jj_gen;
-        break label_1;
-      }
-      res = exp();
-      label_2:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-        case EQUAL:{
-          ;
-          break;
-          }
-        default:
-          jj_la1[1] = jj_gen;
-          break label_2;
-        }
-        jj_consume_token(EQUAL);
-System.out.println(res);
-      }
-    }
+  static final public void Input() throws ParseException, NumberFormatException {Token t;
+    jj_consume_token(create);
     jj_consume_token(0);
-}
-
-  static final public double exp() throws ParseException, NumberFormatException {double first, second;
-    Token op;
-    first = expS();
-    label_3:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case OPS:{
-        ;
-        break;
-        }
-      default:
-        jj_la1[2] = jj_gen;
-        break label_3;
-      }
-      op = jj_consume_token(OPS);
-      second = expS();
-if (op.image.equals("+"))
-                first += second;
-            else if (op.image.equals("-"))
-                first -= second;
-    }
-{if ("" != null) return first;}
-    throw new Error("Missing return statement in function");
-}
-
-  static final public double expS() throws ParseException, NumberFormatException {double first, second;
-    Token op;
-    first = expP();
-    label_4:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case OPP:{
-        ;
-        break;
-        }
-      default:
-        jj_la1[3] = jj_gen;
-        break label_4;
-      }
-      op = jj_consume_token(OPP);
-      second = expP();
-if (op.image.equals("*"))
-                first *= second;
-            else if (op.image.equals("/"))
-                if (second != 0)
-                    first /= second;
-                else
-                    System.out.println("Cannot divide by zero");
-    }
-{if ("" != null) return first;}
-    throw new Error("Missing return statement in function");
-}
-
-  static final public double expP() throws ParseException, NumberFormatException {Token n;
-    n = jj_consume_token(REALNUMBER);
-{if ("" != null) return Double.parseDouble(n.image);}
-    throw new Error("Missing return statement in function");
 }
 
   static private boolean jj_initialized_once = false;
@@ -109,13 +24,13 @@ if (op.image.equals("*"))
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[4];
+  static final private int[] jj_la1 = new int[0];
   static private int[] jj_la1_0;
   static {
 	   jj_la1_init_0();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0x10,0x100000,0x4,0x2,};
+	   jj_la1_0 = new int[] {};
 	}
 
   /** Constructor with InputStream. */
@@ -136,7 +51,6 @@ if (op.image.equals("*"))
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 4; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -150,7 +64,7 @@ if (op.image.equals("*"))
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 4; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 0; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -167,7 +81,6 @@ if (op.image.equals("*"))
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 4; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -185,7 +98,6 @@ if (op.image.equals("*"))
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 4; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -201,7 +113,6 @@ if (op.image.equals("*"))
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 4; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -210,7 +121,6 @@ if (op.image.equals("*"))
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 4; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -261,12 +171,12 @@ if (op.image.equals("*"))
   /** Generate ParseException. */
   static public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[25];
+	 boolean[] la1tokens = new boolean[17];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
 	 }
-	 for (int i = 0; i < 4; i++) {
+	 for (int i = 0; i < 0; i++) {
 	   if (jj_la1[i] == jj_gen) {
 		 for (int j = 0; j < 32; j++) {
 		   if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -275,7 +185,7 @@ if (op.image.equals("*"))
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 25; i++) {
+	 for (int i = 0; i < 17; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

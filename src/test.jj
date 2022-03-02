@@ -16,7 +16,7 @@ PARSER_END(Example)
 /** Root production. */
 TOKEN :
 {
-   <create :  ("ADD ") <element>>
+   <create :  ("ADD ") <element> >
 }
 TOKEN :
 {
@@ -92,5 +92,5 @@ void Input() throws NumberFormatException:
     Token t;
 }
 {
-
+    <create><EOF>
 }

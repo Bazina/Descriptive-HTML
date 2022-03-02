@@ -9,45 +9,37 @@ public interface ExampleConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int OPP = 1;
+  int create = 1;
   /** RegularExpression Id. */
-  int OPS = 2;
+  int element = 2;
   /** RegularExpression Id. */
-  int NUMBER = 3;
+  int img = 3;
   /** RegularExpression Id. */
-  int REALNUMBER = 4;
+  int header = 4;
   /** RegularExpression Id. */
-  int create = 5;
+  int para = 5;
   /** RegularExpression Id. */
-  int element = 6;
+  int url = 6;
   /** RegularExpression Id. */
-  int img = 7;
+  int decorated_text = 7;
   /** RegularExpression Id. */
-  int header = 8;
+  int decorated_url = 8;
   /** RegularExpression Id. */
-  int para = 9;
+  int text = 9;
   /** RegularExpression Id. */
-  int url = 10;
+  int color = 10;
   /** RegularExpression Id. */
-  int decorated_url = 11;
+  int font = 11;
   /** RegularExpression Id. */
-  int decorated_text = 12;
+  int link = 12;
   /** RegularExpression Id. */
-  int text = 13;
+  int quote = 13;
   /** RegularExpression Id. */
-  int color = 14;
+  int alphanumeric = 14;
   /** RegularExpression Id. */
-  int font = 15;
+  int sentence = 15;
   /** RegularExpression Id. */
-  int quote = 16;
-  /** RegularExpression Id. */
-  int alphanumeric = 17;
-  /** RegularExpression Id. */
-  int sentence = 18;
-  /** RegularExpression Id. */
-  int string = 19;
-  /** RegularExpression Id. */
-  int EQUAL = 20;
+  int string = 16;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -55,30 +47,22 @@ public interface ExampleConstants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
-    "<OPP>",
-    "<OPS>",
-    "<NUMBER>",
-    "<REALNUMBER>",
     "<create>",
     "<element>",
     "<img>",
     "<header>",
     "<para>",
     "<url>",
-    "<decorated_url>",
     "<decorated_text>",
+    "<decorated_url>",
     "<text>",
     "<color>",
     "<font>",
+    "<link>",
     "\"\\\"\"",
     "<alphanumeric>",
     "<sentence>",
     "<string>",
-    "\"=\"",
-    "\"\\n\"",
-    "\"\\t\"",
-    "\"\\r\"",
-    "\" \"",
   };
 
 }
