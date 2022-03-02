@@ -84,7 +84,7 @@ TOKEN :
 
 void Input() throws NumberFormatException:
 {
-    double res;
+    Token t;
 }
 {
 
