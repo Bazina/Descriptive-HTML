@@ -37,16 +37,17 @@ TOKEN :
 }
 TOKEN :
 {
-   <url :  ("LINK ") <decorated_url> (<decorated_text>)+>
+   <url :  ("LINK ") <decorated_url> >
 }
+
 
 TOKEN :
 {
-   <decorated_url: ("http://"|"https://") <string> ("." <string>)+>
+   <decorated_text :<font> | <color> | <text>>
 }
 TOKEN :
 {
-   <decorated_text :<font> | <color> | <text>>
+   <decorated_url :(<decorated_text>)+ <link> (<decorated_text>)*>
 }
 
 
@@ -61,6 +62,10 @@ TOKEN :
 TOKEN :
 {
    <font:  ("WITH FONT ") <quote> <sentence> <quote>>
+}
+TOKEN :
+{
+   <link: ("AND WITH LINK ")  <quote> ( ("http://"|"https://") <string> ("." <string>)+ ) <quote>>
 }
 
 TOKEN :
