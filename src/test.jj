@@ -26,14 +26,63 @@ TOKEN : {
 TOKEN : {
     <REALNUMBER: <NUMBER>("."<NUMBER>)*>
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ TOKEN :
+  {
+     <create :  ("ADD ") (<element>)+  >
+  }
 TOKEN :
-{
-  <decorated_url: ("http://"|"https://")+ (<string>)+ ("." <string> )+>
-}
+  {
+     <element : (<img>)+ | (<header>)+ | (<para>)+ | (<url>)+   >
+  }
+
+///////////////
+ TOKEN :
+  {
+    <img:  ("IMAGE WITH SOURCE ") (<quote>)+ (<sentence>)+ (<quote>)+ >
+  }
+ TOKEN :
+  {
+     <header :  ("HEADING ") (<decorated_text>)+ >
+  }
+ TOKEN :
+  {
+     <para :  ("PARAGRAPH ") (<decorated_text>)+  >
+  }
+ TOKEN :
+  {
+     <url :  ("LINK ") (<decorated_url>)+  >
+  }
+
+
+///////////////
+
+ TOKEN :
+ {
+    <decorated_url: ("http://"|"https://")+ (<string>)+ ("." <string> )+>
+ }
+ TOKEN :
+ {
+    <decorated_text :(<font>)+ | (<color>)+ | (<text>)+ >
+ }
+
+////////////////
+
 TOKEN :
  {
-  <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
+    <text:  ("WITH TEXT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
  }
+ TOKEN :
+ {
+    <color :  ("WITH COLOR ") (<quote>)+ (<sentence>)+ (<quote>)+ >
+ }
+ TOKEN :
+  {
+     <font:  ("WITH FONT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
+  }
+
+//////////////
+
 TOKEN :
  {
  <quote: "\"" >
@@ -46,10 +95,17 @@ TOKEN :
  {
  <sentence  :  (<alphanumeric>)+ | ("") >
  }
+ ///////////////
+
  TOKEN :
-   {
-   <text      :  ("WITH TEXT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
-   }
+  {
+   <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 TOKEN : {
     <EQUAL: "=">

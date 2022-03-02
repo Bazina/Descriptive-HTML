@@ -115,7 +115,7 @@ if (op.image.equals("*"))
 	   jj_la1_init_0();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0x10,0x800,0x4,0x2,};
+	   jj_la1_0 = new int[] {0x10,0x100000,0x4,0x2,};
 	}
 
   /** Constructor with InputStream. */
@@ -261,7 +261,7 @@ if (op.image.equals("*"))
   /** Generate ParseException. */
   static public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[16];
+	 boolean[] la1tokens = new boolean[25];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
@@ -275,7 +275,7 @@ if (op.image.equals("*"))
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 16; i++) {
+	 for (int i = 0; i < 25; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

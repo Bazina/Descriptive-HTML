@@ -17,19 +17,37 @@ public interface ExampleConstants {
   /** RegularExpression Id. */
   int REALNUMBER = 4;
   /** RegularExpression Id. */
-  int decorated_url = 5;
+  int create = 5;
   /** RegularExpression Id. */
-  int string = 6;
+  int element = 6;
   /** RegularExpression Id. */
-  int quote = 7;
+  int img = 7;
   /** RegularExpression Id. */
-  int alphanumeric = 8;
+  int header = 8;
   /** RegularExpression Id. */
-  int sentence = 9;
+  int para = 9;
   /** RegularExpression Id. */
-  int text = 10;
+  int url = 10;
   /** RegularExpression Id. */
-  int EQUAL = 11;
+  int decorated_url = 11;
+  /** RegularExpression Id. */
+  int decorated_text = 12;
+  /** RegularExpression Id. */
+  int text = 13;
+  /** RegularExpression Id. */
+  int color = 14;
+  /** RegularExpression Id. */
+  int font = 15;
+  /** RegularExpression Id. */
+  int quote = 16;
+  /** RegularExpression Id. */
+  int alphanumeric = 17;
+  /** RegularExpression Id. */
+  int sentence = 18;
+  /** RegularExpression Id. */
+  int string = 19;
+  /** RegularExpression Id. */
+  int EQUAL = 20;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -41,12 +59,21 @@ public interface ExampleConstants {
     "<OPS>",
     "<NUMBER>",
     "<REALNUMBER>",
+    "<create>",
+    "<element>",
+    "<img>",
+    "<header>",
+    "<para>",
+    "<url>",
     "<decorated_url>",
-    "<string>",
+    "<decorated_text>",
+    "<text>",
+    "<color>",
+    "<font>",
     "\"\\\"\"",
     "<alphanumeric>",
     "<sentence>",
-    "<text>",
+    "<string>",
     "\"=\"",
     "\"\\n\"",
     "\"\\t\"",
