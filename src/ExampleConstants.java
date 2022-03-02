@@ -63,6 +63,9 @@ public interface ExampleConstants {
     "<alphanumeric>",
     "<sentence>",
     "<string>",
+    "\"\\n\"",
+    "\"\\t\"",
+    "\"\\r\"",
   };
 
 }
