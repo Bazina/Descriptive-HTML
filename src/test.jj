@@ -37,7 +37,7 @@ TOKEN :
 }
 TOKEN :
 {
-   <url :  ("LINK ") <decorated_url>>
+   <url :  ("LINK ") <decorated_url> (<decorated_text>)+>
 }
 
 TOKEN :
