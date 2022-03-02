@@ -26,9 +26,31 @@ TOKEN : {
 TOKEN : {
     <REALNUMBER: <NUMBER>("."<NUMBER>)*>
 }
-TOKEN : {
-
+TOKEN :
+{
+  <decorated_url: ("http://"|"https://")+ (<string>)+ ("." <string> )+>
 }
+TOKEN :
+ {
+  <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
+ }
+TOKEN :
+ {
+ <quote: "\"" >
+ }
+TOKEN :
+ {
+ <alphanumeric:(["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+ | (".")+ | ("/")+ | (":")+ >
+ }
+TOKEN :
+ {
+ <sentence  :  (<alphanumeric>)+ | ("") >
+ }
+ TOKEN :
+   {
+   <text      :  ("WITH TEXT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
+   }
+
 TOKEN : {
     <EQUAL: "=">
 }

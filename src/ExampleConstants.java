@@ -17,7 +17,19 @@ public interface ExampleConstants {
   /** RegularExpression Id. */
   int REALNUMBER = 4;
   /** RegularExpression Id. */
-  int EQUAL = 5;
+  int decorated_url = 5;
+  /** RegularExpression Id. */
+  int string = 6;
+  /** RegularExpression Id. */
+  int quote = 7;
+  /** RegularExpression Id. */
+  int alphanumeric = 8;
+  /** RegularExpression Id. */
+  int sentence = 9;
+  /** RegularExpression Id. */
+  int text = 10;
+  /** RegularExpression Id. */
+  int EQUAL = 11;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -29,6 +41,12 @@ public interface ExampleConstants {
     "<OPS>",
     "<NUMBER>",
     "<REALNUMBER>",
+    "<decorated_url>",
+    "<string>",
+    "\"\\\"\"",
+    "<alphanumeric>",
+    "<sentence>",
+    "<text>",
     "\"=\"",
     "\"\\n\"",
     "\"\\t\"",
