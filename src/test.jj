@@ -14,71 +14,71 @@ public class Example {
 PARSER_END(Example)
 
 /** Root production. */
- TOKEN :
-  {
-     <create :  ("ADD ") (<element>)+  >
-  }
-TOKEN :
-  {
-     <element : (<img>)+ | (<header>)+ | (<para>)+ | (<url>)+   >
-  }
-
-TOKEN :
- {
-   <img:  ("IMAGE WITH SOURCE ") (<quote>)+ (<sentence>)+ (<quote>)+ >
- }
-TOKEN :
- {
-    <header :  ("HEADING ") (<decorated_text>)+ >
- }
-TOKEN :
- {
-    <para :  ("PARAGRAPH ") (<decorated_text>)+  >
- }
-TOKEN :
- {
-    <url :  ("LINK ") (<decorated_url>)+  >
- }
-
 TOKEN :
 {
-   <decorated_url: ("http://"|"https://")+ (<string>)+ ("." <string> )+>
+   <create :  ("ADD ") <element>>
 }
 TOKEN :
 {
-   <decorated_text :(<font>)+ | (<color>)+ | (<text>)+ >
-}
-
-
-TOKEN :
-{
-   <text:  ("WITH TEXT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
-}
-TOKEN :
-{
-   <color :  ("WITH COLOR ") (<quote>)+ (<sentence>)+ (<quote>)+ >
-}
-TOKEN :
-{
-   <font:  ("WITH FONT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
+   <element : <img> | <header> | <para> | <url>>
 }
 
 TOKEN :
 {
-<quote: "\"" >
+  <img:  ("IMAGE WITH SOURCE ") <quote> <sentence> <quote>>
 }
 TOKEN :
 {
-<alphanumeric:(["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+ | (".")+ | ("/")+ | (":")+ >
+   <header :  ("HEADING ") (<decorated_text>)+>
 }
 TOKEN :
 {
-<sentence  :  (<alphanumeric>)+ | ("") >
+   <para :  ("PARAGRAPH ") (<decorated_text>)+>
+}
+TOKEN :
+{
+   <url :  ("LINK ") <decorated_url>>
 }
 
 TOKEN :
 {
- <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
+   <decorated_url: ("http://"|"https://") <string> ("." <string>)+>
+}
+TOKEN :
+{
+   <decorated_text :<font> | <color> | <text>>
+}
+
+
+TOKEN :
+{
+   <text:  ("WITH TEXT ") <quote> <sentence> <quote>>
+}
+TOKEN :
+{
+   <color :  ("WITH COLOR ") <quote> <sentence> <quote>>
+}
+TOKEN :
+{
+   <font:  ("WITH FONT ") <quote> <sentence> <quote>>
+}
+
+TOKEN :
+{
+    <quote: "\"">
+}
+TOKEN :
+{
+    <alphanumeric: ["a"-"z"] | ["A"-"Z"] | ["0"-"9"] | "." | "/" | ":">
+}
+TOKEN :
+{
+    <sentence: (<alphanumeric>)+ | ("")>
+}
+
+TOKEN :
+{
+    <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
 }
 
 
