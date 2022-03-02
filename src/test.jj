@@ -14,19 +14,6 @@ public class Example {
 PARSER_END(Example)
 
 /** Root production. */
-TOKEN : {
-    <OPP: "*" | "/">
-}
-TOKEN : {
-    <OPS: "+" | "-">
-}
-TOKEN : {
-    <#NUMBER: (["0"-"9"])+>
-}
-TOKEN : {
-    <REALNUMBER: <NUMBER>("."<NUMBER>)*>
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  TOKEN :
   {
      <create :  ("ADD ") (<element>)+  >
@@ -36,7 +23,6 @@ TOKEN :
      <element : (<img>)+ | (<header>)+ | (<para>)+ | (<url>)+   >
   }
 
-///////////////
  TOKEN :
   {
     <img:  ("IMAGE WITH SOURCE ") (<quote>)+ (<sentence>)+ (<quote>)+ >
@@ -54,9 +40,6 @@ TOKEN :
      <url :  ("LINK ") (<decorated_url>)+  >
   }
 
-
-///////////////
-
  TOKEN :
  {
     <decorated_url: ("http://"|"https://")+ (<string>)+ ("." <string> )+>
@@ -66,7 +49,6 @@ TOKEN :
     <decorated_text :(<font>)+ | (<color>)+ | (<text>)+ >
  }
 
-////////////////
 
 TOKEN :
  {
@@ -81,8 +63,6 @@ TOKEN :
      <font:  ("WITH FONT ") (<quote>)+ (<sentence>)+ (<quote>)+ >
   }
 
-//////////////
-
 TOKEN :
  {
  <quote: "\"" >
@@ -95,85 +75,17 @@ TOKEN :
  {
  <sentence  :  (<alphanumeric>)+ | ("") >
  }
- ///////////////
 
  TOKEN :
   {
    <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
   }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-TOKEN : {
-    <EQUAL: "=">
-}
-SKIP : {
-    "\n" | "\t" | "\r"
-}
-SKIP : {
-    " "
-}
 
 void Input() throws NumberFormatException:
 {
     double res;
 }
 {
-  (res = exp()
 
-  (<EQUAL>
-      {System.out.println(res);}
-  )*
-  )*<EOF>
-}
-
-double exp()  throws NumberFormatException:
-{
-    double first, second;
-    Token op;
-}
-{
-    first = expS() (op = <OPS> second = expS()
-        {
-            if (op.image.equals("+"))
-                first += second;
-            else if (op.image.equals("-"))
-                first -= second;
-        }
-    )*
-
-    {return first;}
-}
-
-double expS()  throws NumberFormatException:
-{
-    double first, second;
-    Token op;
-}
-{
-    first = expP() (op = <OPP> second = expP()
-        {
-            if (op.image.equals("*"))
-                first *= second;
-            else if (op.image.equals("/"))
-                if (second != 0)
-                    first /= second;
-                else
-                    System.out.println("Cannot divide by zero");
-        }
-    )*
-
-    {return first;}
-}
-
-double expP() throws NumberFormatException:
-{
-    Token n;
-}
-{
-    n = <REALNUMBER>
-    {return Double.parseDouble(n.image);}
 }
