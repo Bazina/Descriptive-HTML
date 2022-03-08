@@ -1,17 +1,18 @@
-PARSER_BEGIN(Example)
+PARSER_BEGIN(HTMLParser)
 
 /** Simple brace matcher. */
-public class Example {
+public class HTMLParser {
 
   /** Main entry point. */
   public static void main(String args[]) throws ParseException {
-    Example parser = new Example(System.in);
-    parser.Input();
+    Parser.HTMLParser parser = new HTMLParser(System.in);
+    String ans = parser.Input();
+    System.out.println(ans);
   }
 
 }
 
-PARSER_END(Example)
+PARSER_END(HTMLParser)
 
 /** Root production. */
 TOKEN :
@@ -25,7 +26,7 @@ TOKEN :
 
 TOKEN :
 {
-  <img:  ("IMAGE WITH SOURCE ") <quote> <sentence> <quote>>
+  <img:  ("IMAGE WITH SOURCE ") <QUOTED>>
 }
 TOKEN :
 {
@@ -47,53 +48,115 @@ TOKEN :
 }
 TOKEN :
 {
-   <decorated_url :(<decorated_text>)+ <link> (<decorated_text>) (" AND " (<decorated_text>))*>
+   <decorated_url :<text> <link> (" AND " (<decorated_text>))*>
 }
 
 
 TOKEN :
 {
-   <text:  ("WITH TEXT ") <quote> <sentence> <quote>>
+   <text:  ("WITH TEXT ") <QUOTED>>
 }
 TOKEN :
 {
-   <color :  ("WITH COLOR ") <quote> <sentence> <quote>>
+   <color :  ("WITH COLOR ") <QUOTED>>
 }
 TOKEN :
 {
-   <font:  ("WITH FONT ") <quote> <sentence> <quote>>
+   <font:  ("WITH FONT ") <QUOTED>>
 }
 TOKEN :
 {
-   <link: ("AND WITH LINK ")  <quote> ( ("http://"|"https://") <string> ("." <string>)+ ) <quote>>
+   <link: (" AND WITH LINK ") <QUOTEDURL> >
 }
 
 TOKEN :
 {
     <quote: "\"">
 }
-TOKEN :
-{
-    <alphanumeric: ["a"-"z"] | ["A"-"Z"] | ["0"-"9"] | "." | "/" | ":" | " ">
-}
-TOKEN :
-{
-    <sentence: (<alphanumeric>)+ | ("")>
-}
 
-TOKEN :
-{
-    <string: (["a"-"z"])+ | (["A"-"Z"])+ | (["0"-"9"])+>
+TOKEN: {
+<QUOTED:
+    "\""
+    (
+        ~["\"","\\"]  //any character except quote or backslash
+    )*
+    "\"" >
+}
+TOKEN: {
+<QUOTEDURL:
+    "\""("http://" | "https://")
+    (
+        ~["\"","\\"]
+    )+
+    "\"" >
 }
 
 SKIP : {
     "\n" | "\t" | "\r"
 }
 
-void Input() throws NumberFormatException:
+String Input() throws NumberFormatException:
 {
     Token t;
+    StringBuilder ans = new StringBuilder();
 }
 {
-    (<create>)*<EOF>
+    (
+        t = <create>
+        {
+            String str = t.image;
+            StringBuilder dummyAns = new StringBuilder();
+            if (t.image.contains("IMAGE")) {
+                int urlStart = str.indexOf("\"") + 1;
+                String imgUrl = str.substring(urlStart, str.length() - 1);
+                ans.append("<img src=\"").append(imgUrl).append("\"/>");
+            } else {
+                String text = "", color = "", font = "", link = "", tag;
+                if (str.contains("HEADING"))
+                    tag = "h1";
+                else if (str.contains("PARAGRAPH"))
+                    tag = "p";
+                else
+                    tag = "a";
+
+                if (str.contains("WITH TEXT")) {
+                    int textStart = str.indexOf("TEXT") + 6;
+                    text = str.substring(textStart, str.indexOf("\"", textStart));
+                }
+
+                if (str.contains("WITH FONT")) {
+                    int fontStart = str.indexOf("FONT") + 6;
+                    font = str.substring(fontStart, str.indexOf("\"", fontStart));
+                }
+
+                if (str.contains("WITH COLOR")) {
+                    int colorStart = str.indexOf("COLOR") + 7;
+                    color = str.substring(colorStart, str.indexOf("\"", colorStart));
+                }
+
+                if (str.contains("WITH LINK")) {
+                    int linkStart = str.lastIndexOf("LINK") + 6;
+                    link = str.substring(linkStart, str.indexOf("\"", linkStart));
+                }
+
+                dummyAns = new StringBuilder("<" + tag);
+                if (!link.equals(""))
+                    dummyAns.append(" href="+"\"").append(link).append("\"");
+                if (!color.equals(""))
+                    dummyAns.append(" style="+"\"color:").append(color).append(";\"");
+                if (!font.equals("")) {
+                    if (dummyAns.toString().contains("style")) {
+                        String dummy = dummyAns.substring(0, dummyAns.indexOf(";") + 1);
+                        dummyAns = new StringBuilder(dummy + "font-family:" + font + ";\"");
+                    } else {
+                        dummyAns.append(" style="+"\"font-family:").append(font).append(";\"");
+                    }
+                }
+                if (!text.equals(""))
+                    dummyAns.append(">").append(text).append("</").append(tag).append(">");
+            }
+            ans.append(dummyAns).append("\n");
+        }
+    )*"="
+    {return ans.toString();}
 }
