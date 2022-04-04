@@ -1,5 +1,7 @@
-package Parser;
+package Test;
 
+import Parser.HTMLParser;
+import Parser.ParseException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +11,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 class GenerateHTMLParserTest {
-
     @Test
     void test1() throws ParseException {
         String str = """
@@ -31,8 +32,8 @@ class GenerateHTMLParserTest {
 
 
         InputStream is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        HTMLParser parser = new HTMLParser(new InputStreamReader(is));
-        String ans = parser.Input();
+        HTMLParser.ReInit(new InputStreamReader(is));
+        String ans = HTMLParser.Input();
         Assertions.assertEquals(expected, ans, "Error");
     }
 
@@ -51,8 +52,8 @@ class GenerateHTMLParserTest {
 
 
         InputStream is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        HTMLParser parser = new HTMLParser(new InputStreamReader(is));
-        String ans = parser.Input();
+        HTMLParser.ReInit(new InputStreamReader(is));
+        String ans = HTMLParser.Input();
         Assertions.assertEquals(expected, ans, "Error");
     }
 
@@ -73,8 +74,8 @@ class GenerateHTMLParserTest {
 
 
         InputStream is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        HTMLParser parser = new HTMLParser(new InputStreamReader(is));
-        String ans = parser.Input();
+        HTMLParser.ReInit(new InputStreamReader(is));
+        String ans = HTMLParser.Input();
         Assertions.assertEquals(expected, ans, "Error");
     }
 
@@ -95,8 +96,8 @@ class GenerateHTMLParserTest {
 
 
         InputStream is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        HTMLParser parser = new HTMLParser(new InputStreamReader(is));
-        String ans = parser.Input();
+        HTMLParser.ReInit(new InputStreamReader(is));
+        String ans = HTMLParser.Input();
         Assertions.assertEquals(expected, ans, "Error");
     }
 
@@ -115,8 +116,8 @@ class GenerateHTMLParserTest {
 
 
         InputStream is = new ByteArrayInputStream(str.getBytes(StandardCharsets.UTF_8));
-        HTMLParser parser = new HTMLParser(new InputStreamReader(is));
-        String ans = parser.Input();
+        HTMLParser.ReInit(new InputStreamReader(is));
+        String ans = HTMLParser.Input();
         Assertions.assertEquals(expected, ans, "Error");
     }
 }
