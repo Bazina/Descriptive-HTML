@@ -1,7 +1,7 @@
 PARSER_BEGIN(HTMLParser)
 
 /** Simple brace matcher. */
-public class HTMLParser {
+import Parser.ParseException;public class HTMLParser {
 
   /** Main entry point. */
   public static void main(String args[]) throws ParseException {
@@ -9,6 +9,8 @@ public class HTMLParser {
     String ans = parser.Input();
     System.out.println(ans);
   }
+
+}}
 
 }
 
