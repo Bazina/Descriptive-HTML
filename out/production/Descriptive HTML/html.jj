@@ -1,5 +1,5 @@
 options {
-  LOOKAHEAD = 4;
+  LOOKAHEAD = 6;
   FORCE_LA_CHECK = true;
 }
 PARSER_BEGIN(HTMLParser)
@@ -13,8 +13,6 @@ import Parser.ParseException;public class HTMLParser {
     String ans = parser.Input();
     System.out.println(ans);
   }
-
-}}
 
 }
 
@@ -44,7 +42,7 @@ TOKEN :
 }
 TOKEN :
 {
-   <url :  ("LINK ") (((<font> | <color>) " AND ")* (<decorated_url>) (" AND " (<font> | <color>))*) >
+   <url :  ("LINK ") (<decorated_url>) (" AND " (<decorated_url>))* >
 }
 
 
@@ -54,7 +52,7 @@ TOKEN :
 }
 TOKEN :
 {
-   <decorated_url :<text> <link>>
+   <decorated_url : <decorated_text> | <link>>
 }
 
 
@@ -72,7 +70,7 @@ TOKEN :
 }
 TOKEN :
 {
-   <link: (" AND WITH LINK ") <QUOTEDURL> >
+   <link: ("WITH LINK ") <QUOTEDURL> >
 }
 
 TOKEN :
@@ -103,7 +101,7 @@ SKIP : {
 
 String Input() throws NumberFormatException:
 {
-    Token t;
+    Parser.Token t;
     StringBuilder ans = new StringBuilder();
 }
 {
@@ -144,6 +142,11 @@ String Input() throws NumberFormatException:
                     if (str.contains("WITH LINK")) {
                         int linkStart = str.lastIndexOf("LINK") + 6;
                         link = str.substring(linkStart, str.indexOf("\"", linkStart));
+                    }
+
+                    if (tag.equals("a") && (text.equals("") || link.equals(""))) {
+                        System.out.println("Error: Link and text cannot be empty");
+                        System.exit(0);
                     }
 
                     dummyAns = new StringBuilder("<" + tag);
